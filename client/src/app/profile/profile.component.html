@@ -1,0 +1,43 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <h1 class="form-signin-heading">Your profile</h1>
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Full name</label>
+                    <p class="form-control-static">{{ details?.name }}</p>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Email</label>
+                    <p class="form-control-static">{{ details?.email }}</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+            <h2>HAT</h2>
+            <!-- Data: <input type="text" [(ngModel)]="page"> -->
+            <button (click)="search()" type="button" class="btn btn-primary">Get HAT data</button>
+
+            <div *ngIf="response">
+                <p>URL: {{response.userId}}</p>
+            </div>
+
+            <!--AWS URLS-->
+            <button (click)="awsurl()" type="button" class="btn btn-primary">AWS url</button>
+
+            <div *ngIf="response">
+                <p>AWS:<a target="_blank" href="{{response[0]?.url}}">{{response[0]?.url}}</a></p>
+
+            </div>
+        </div>
+    </div>
+</div>

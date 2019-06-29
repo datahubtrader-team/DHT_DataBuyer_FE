@@ -1,0 +1,60 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login Form</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+    .login-form {
+        width: 340px;
+        margin: 50px auto;
+    }
+    
+    .login-form form {
+        margin-bottom: 15px;
+        background: #f7f7f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+    
+    .login-form h2 {
+        margin: 0 0 15px;
+    }
+    
+    .form-control,
+    .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    
+    .btn {
+        font-size: 15px;
+        font-weight: bold;
+    }
+</style>
+
+
+<div class="login-form">
+
+    <!-- <h1 class="form-signin-heading">Sign in</h1> -->
+    <!-- <p class="lead">Not a member? Please <a routerLink="/register">register</a> instead.</p> -->
+
+    <form (submit)="login()">
+        <h2 class="text-center">Log in</h2>
+        <div class="form-group">
+            <input class="form-control" type="email" name="email" placeholder="Enter PDS email" [(ngModel)]="credentials.email" required="required">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="password" name="password" placeholder="PDS Password" [(ngModel)]="credentials.password" required="required">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Sign in!</button>
+        <div class="clearfix">
+            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            <a href="#" class="pull-right">Forgot Password?</a>
+        </div>
+    </form>
+    <p class="text-center"><a routerLink="/register">Create an Account</a></p>
+
+</div>

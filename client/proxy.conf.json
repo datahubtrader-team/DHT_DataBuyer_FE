@@ -1,0 +1,18 @@
+{
+    "/api": {
+        "target": "http://178.128.44.220:3000",
+        "secure": false
+    },
+    "/hat": {
+        "target": "http://localhost:4020",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+    "/urls": {
+        "target": "http://localhost:4020",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}
