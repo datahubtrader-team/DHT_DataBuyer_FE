@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <!-- Search requests -->
+        <!-- Search request history-->
         <div class="container">
             <h2>List searches</h2>
             <!-- Data: <input type="text" [(ngModel)]="page"> -->
@@ -50,12 +50,18 @@
                 <ul *ngIf="response">
                     <li *ngFor="let app of response">
                         <h1>
-                            {{app.search}} {{app.participant_min}}
+                            {{app.search}} {{app.participant_min}} {{app.deadline}}
                         </h1>
                     </li>
                 </ul>
             </div>
 
+        </div>
+        <!-- Input Search requests -->
+        <div>
+            Search: <input type="text" [(ngModel)]="searchInput"> participant_min: <input type="text" [(ngModel)]="participant_min"> participant_max: <input type="text" [(ngModel)]="participant_max"> activity: <input type="text" [(ngModel)]="activity">            deadline: <input type="text" [(ngModel)]="deadline">
+            <button (click)="Inputsearch()" type="button" class="btn btn-primary">search</button>
+            <!-- Need to add the Buyers Id and email to the search request payload-->
         </div>
     </div>
 </div>

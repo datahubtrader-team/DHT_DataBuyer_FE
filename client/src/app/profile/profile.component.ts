@@ -11,6 +11,15 @@ export class ProfileComponent {
   page: string = "";
   response: any;
   dd: any;
+
+  //Payload to the Data consumer service
+  searchInput: string = "";
+  participant_min: string = "";
+  participant_max: string = "";
+  activity: string = "";
+  deadline: string = "";
+
+
   constructor(private auth: AuthenticationService, private http: HttpClient) {}
   
   ngOnInit() {    
@@ -64,6 +73,27 @@ export class ProfileComponent {
     .subscribe((response) => {
     this.response = response;
     console.log(this.response);
+    });
+  }
+
+  Inputsearch(){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    this.http.post('/search-requests',{
+      "search": this.searchInput,
+      "participant_min": this.participant_min,
+      "participant_max": this.participant_max,
+      "activity": this.activity,
+      "deadline": this.deadline,
+      "message":"search"
+    },{headers: {
+      //'Access-Control-Allow-Origin':'*',
+      'Access-Control-Allow-Credentials':'true',
+      'Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, X-Auth-Token, Authorization',
+      "Vary":"Accept-Encoding, Origin"
+    }}).subscribe((response) => {
+      this.response = response;
+      console.log(this.response);
+      //console.log("Julian Hamm ",this.dd);
     });
   }
 }

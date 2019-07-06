@@ -18,5 +18,11 @@
     "/searchrequests": {
         "target": "http://localhost:4025",
         "secure": false
+    },
+    "/search-requests": {
+        "target": "http://localhost:4025",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
     }
 }
