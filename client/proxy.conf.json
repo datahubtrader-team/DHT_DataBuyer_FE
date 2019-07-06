@@ -14,5 +14,9 @@
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true
+    },
+    "/searchrequests": {
+        "target": "http://localhost:4025",
+        "secure": false
     }
 }

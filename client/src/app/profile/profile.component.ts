@@ -59,4 +59,11 @@ export class ProfileComponent {
     });
   }
 
+  searchReq(){
+    this.http.get('/searchrequests')
+    .subscribe((response) => {
+    this.response = response;
+    console.log(this.response);
+    });
+  }
 }

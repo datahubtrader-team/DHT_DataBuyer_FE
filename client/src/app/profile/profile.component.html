@@ -39,5 +39,23 @@
 
             </div>
         </div>
+
+        <!-- Search requests -->
+        <div class="container">
+            <h2>List searches</h2>
+            <!-- Data: <input type="text" [(ngModel)]="page"> -->
+            <button (click)="searchReq()" type="button" class="btn btn-primary">List searches</button>
+
+            <div>
+                <ul *ngIf="response">
+                    <li *ngFor="let app of response">
+                        <h1>
+                            {{app.search}} {{app.participant_min}}
+                        </h1>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
     </div>
 </div>
