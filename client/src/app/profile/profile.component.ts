@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
 import { AuthenticationService, UserDetails } from '../authentication.service';
 import { HttpClient } from '@angular/common/http';
+import {
+  MatSnackBar,
+  MatSnackBarConfig,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material';
 
 @Component({
   templateUrl: './profile.component.html'
+  // styleUrls: [ './profile.component.css' ],
 })
 export class ProfileComponent {
   details: UserDetails;
@@ -18,9 +25,24 @@ export class ProfileComponent {
   participant_max: string = "";
   activity: string = "";
   deadline: string = "";
+  buyerId: string = "";
 
+  //Output message
+  name = 'Angular 4';
+  
+  message: string = 'Snack Bar opened.';
+  actionButtonLabel: string = 'Retry';
+  action: boolean = true;
+  setAutoHide: boolean = true;
+  autoHide: number = 2000;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  
+  addExtraClass: boolean = false;
 
-  constructor(private auth: AuthenticationService, private http: HttpClient) {}
+  //===================================================================
+
+  constructor(private auth: AuthenticationService, private http: HttpClient, public snackBar: MatSnackBar) {}
   
   ngOnInit() {    
     this.auth.profile().subscribe(user => {
@@ -69,14 +91,14 @@ export class ProfileComponent {
   }
 
   searchReq(){
-    this.http.get('/searchrequests')
+    this.http.get('/allsearchrequests')
     .subscribe((response) => {
     this.response = response;
     console.log(this.response);
     });
   }
 
-  Inputsearch(){
+  Inputsearch(buyerId){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     this.http.post('/search-requests',{
       "search": this.searchInput,
@@ -84,6 +106,7 @@ export class ProfileComponent {
       "participant_max": this.participant_max,
       "activity": this.activity,
       "deadline": this.deadline,
+      "buyerId": buyerId,
       "message":"search"
     },{headers: {
       //'Access-Control-Allow-Origin':'*',
@@ -95,5 +118,14 @@ export class ProfileComponent {
       console.log(this.response);
       //console.log("Julian Hamm ",this.dd);
     });
+
+    //Output message
+    let config = new MatSnackBarConfig();
+    config.verticalPosition = this.verticalPosition;
+    config.horizontalPosition = this.horizontalPosition;
+    config.duration = this.setAutoHide ? this.autoHide : 0;
+    config.extraClasses = this.addExtraClass ? ['test'] : undefined;
+    this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
+
   }
 }

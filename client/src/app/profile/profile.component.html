@@ -18,25 +18,54 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Email</label>
                     <p class="form-control-static">{{ details?.email }}</p>
+                    <p class="form-control-static">{{ details?._id }}</p>
                 </div>
             </div>
 
         </div>
         <div class="container">
-            <h2>HAT</h2>
-            <!-- Data: <input type="text" [(ngModel)]="page"> -->
-            <button (click)="search()" type="button" class="btn btn-primary">Get HAT data</button>
+            <div class="row">
 
-            <div *ngIf="response">
-                <p>URL: {{response.userId}}</p>
-            </div>
+                <div class="col-md-6">
+                    <!-- Input Search requests -->
+                    <h1 class="form-signin-heading">Search request</h1>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div>
+                                <!-- <label class="col-sm-1 control-label">Search: </label> -->
+                            </div>
+                            <p><input type="text" [(ngModel)]="searchInput" placeholder="Search"></p>
 
-            <!--AWS URLS-->
-            <button (click)="awsurl()" type="button" class="btn btn-primary">AWS url</button>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label class="col-sm-1 control-label">participant_min: </label> -->
+                            <p><input type="text" [(ngModel)]="participant_min" placeholder="participant min"></p>
+                        </div>
+                        <div class="form-group">
+                            <!-- <label class="col-sm-1 control-label">participant_max: </label> -->
+                            <input type="text" [(ngModel)]="participant_max" placeholder="participant max">
+                        </div>
+                        <div class="form-group">
+                            <!-- <label class="col-sm-1 control-label">activity: </label> -->
+                            <input type="text" [(ngModel)]="activity" placeholder="activity">
+                        </div>
+                        <div class="form-group">
+                            <!-- <label class="col-sm-1 control-label">deadline: </label> -->
+                            <!-- <input type="text" [(ngModel)]="deadline" placeholder="deadline"> -->
 
-            <div *ngIf="response">
-                <p>AWS:<a target="_blank" href="{{response[0]?.url}}">{{response[0]?.url}}</a></p>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker" [(ngModel)]="deadline" placeholder="Choose a deadline">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                            <!-- <input [matDatepicker]="myDatepicker">
+                            <mat-datepicker #myDatepicker></mat-datepicker> -->
+                        </div>
+                        <button (click)="Inputsearch(details?._id)" type="submit" class="btn btn-success" confirm-click="You are about to overwrite your PUBLISHED content!! Are you SURE you want to publish?">search</button>
+                        <!-- Need to add the Buyers Id and email to the search request payload-->
 
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -45,8 +74,38 @@
             <h2>List searches</h2>
             <!-- Data: <input type="text" [(ngModel)]="page"> -->
             <button (click)="searchReq()" type="button" class="btn btn-primary">List searches</button>
-
-            <div>
+            <div class="reglist">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Num</th>
+                            <th>Search</th>
+                            <th>Participant_min</th>
+                            <th>Deadline</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="response">
+                        <tr *ngFor="let app of response; let i = index">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>{{app.search}}</td>
+                            <td>{{app.participant_min}}</td>
+                            <td>{{app.deadline}}</td>
+                            <td>
+                                <button type="button" class="btn btn-info" (click)="onEdit(i)">Edit</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div class="text-right">
+                    <button type="submit" class="btn btn-primary" (click)="onNew()">New</button>
+                </div> -->
+            </div>
+            <!-- <div>
                 <ul *ngIf="response">
                     <li *ngFor="let app of response">
                         <h1>
@@ -54,14 +113,8 @@
                         </h1>
                     </li>
                 </ul>
-            </div>
+            </div> -->
 
-        </div>
-        <!-- Input Search requests -->
-        <div>
-            Search: <input type="text" [(ngModel)]="searchInput"> participant_min: <input type="text" [(ngModel)]="participant_min"> participant_max: <input type="text" [(ngModel)]="participant_max"> activity: <input type="text" [(ngModel)]="activity">            deadline: <input type="text" [(ngModel)]="deadline">
-            <button (click)="Inputsearch()" type="button" class="btn btn-primary">search</button>
-            <!-- Need to add the Buyers Id and email to the search request payload-->
         </div>
     </div>
 </div>

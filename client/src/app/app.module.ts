@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+import { MaterialModule } from './material.module';
+
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
@@ -11,6 +13,8 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
+
+import {MatSnackBarModule, MatFormFieldModule, MatSelectModule, MatCheckboxModule, MatInputModule, } from '@angular/material';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,14 +33,18 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    MaterialModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    MatSnackBarModule,
+    MatFormFieldModule, MatSelectModule, MatCheckboxModule, MatInputModule
   ],
   providers: [
     AuthenticationService, 
     AuthGuardService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
