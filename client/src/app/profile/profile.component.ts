@@ -30,8 +30,8 @@ export class ProfileComponent {
   //Output message
   name = 'Angular 4';
   
-  message: string = 'Snack Bar opened.';
-  actionButtonLabel: string = 'Retry';
+  message: string = 'Submitted a search request.';
+  actionButtonLabel: string = '';
   action: boolean = true;
   setAutoHide: boolean = true;
   autoHide: number = 2000;
@@ -47,11 +47,18 @@ export class ProfileComponent {
   ngOnInit() {    
     this.auth.profile().subscribe(user => {
       this.details = user;
-      //console.log(user);
+      console.log(user._id);
+      console.log(this.details._id);
       this.dd = user;
-      //console.log(user.salt);
     }, (err) => {
       console.error(err);
+    });
+
+    //=== List all search requests ===================
+    this.http.get('/allsearchrequests')
+    .subscribe((response) => {
+    this.response = response;
+    console.log(this.response);
     });
   }
 
@@ -127,5 +134,9 @@ export class ProfileComponent {
     config.extraClasses = this.addExtraClass ? ['test'] : undefined;
     this.snackBar.open(this.message, this.action ? this.actionButtonLabel : undefined, config);
 
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }

@@ -31,37 +31,35 @@
                     <h1 class="form-signin-heading">Search request</h1>
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <div>
-                                <!-- <label class="col-sm-1 control-label">Search: </label> -->
-                            </div>
-                            <p><input type="text" [(ngModel)]="searchInput" placeholder="Search"></p>
-
+                            <mat-form-field>
+                                <input matInput placeholder="Search" type="text" [(ngModel)]="searchInput">
+                            </mat-form-field>
                         </div>
                         <div class="form-group">
-                            <!-- <label class="col-sm-1 control-label">participant_min: </label> -->
-                            <p><input type="text" [(ngModel)]="participant_min" placeholder="participant min"></p>
+                            <mat-form-field>
+                                <input matInput type="number" matInput placeholder="participant min" [(ngModel)]="participant_min">
+                            </mat-form-field>
                         </div>
                         <div class="form-group">
-                            <!-- <label class="col-sm-1 control-label">participant_max: </label> -->
-                            <input type="text" [(ngModel)]="participant_max" placeholder="participant max">
+                            <mat-form-field>
+                                <input matInput type="number" placeholder="participant max" [(ngModel)]="participant_max">
+                            </mat-form-field>
                         </div>
                         <div class="form-group">
-                            <!-- <label class="col-sm-1 control-label">activity: </label> -->
-                            <input type="text" [(ngModel)]="activity" placeholder="activity">
+                            <mat-form-field>
+                                <input matInput placeholder="activity" type="text" [(ngModel)]="activity">
+                            </mat-form-field>
                         </div>
                         <div class="form-group">
-                            <!-- <label class="col-sm-1 control-label">deadline: </label> -->
-                            <!-- <input type="text" [(ngModel)]="deadline" placeholder="deadline"> -->
 
                             <mat-form-field>
                                 <input matInput [matDatepicker]="picker" [(ngModel)]="deadline" placeholder="Choose a deadline">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
-                            <!-- <input [matDatepicker]="myDatepicker">
-                            <mat-datepicker #myDatepicker></mat-datepicker> -->
+
                         </div>
-                        <button (click)="Inputsearch(details?._id)" type="submit" class="btn btn-success" confirm-click="You are about to overwrite your PUBLISHED content!! Are you SURE you want to publish?">search</button>
+                        <button (click)="Inputsearch(details?._id); refresh()" type="submit" class="btn btn-success">search</button>
                         <!-- Need to add the Buyers Id and email to the search request payload-->
 
                     </div>
@@ -72,15 +70,17 @@
         <!-- Search request history-->
         <div class="container">
             <h2>List searches</h2>
-            <!-- Data: <input type="text" [(ngModel)]="page"> -->
-            <button (click)="searchReq()" type="button" class="btn btn-primary">List searches</button>
+
+            <!-- <button (click)="searchReq()" type="button" class="btn btn-primary">List searches</button> -->
             <div class="reglist">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Num</th>
+                            <!-- <th>Num</th> -->
                             <th>Search</th>
                             <th>Participant_min</th>
+                            <th>Participant_max</th>
+                            <th>Activity</th>
                             <th>Deadline</th>
                             <th></th>
                             <th></th>
@@ -88,9 +88,11 @@
                     </thead>
                     <tbody *ngIf="response">
                         <tr *ngFor="let app of response; let i = index">
-                            <th scope="row">{{ i + 1 }}</th>
+                            <!-- <th scope="row">{{ i + 1 }}</th> -->
                             <td>{{app.search}}</td>
                             <td>{{app.participant_min}}</td>
+                            <td>{{app.participant_max}}</td>
+                            <td>{{app.activity}}</td>
                             <td>{{app.deadline}}</td>
                             <td>
                                 <button type="button" class="btn btn-info" (click)="onEdit(i)">Edit</button>
