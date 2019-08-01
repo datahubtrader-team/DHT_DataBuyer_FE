@@ -1,0 +1,58 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <h1 class="form-signin-heading">Your profile</h1>
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Full name</label>
+                    <p class="form-control-static">{{ details?.name }}</p>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Email</label>
+                    <p class="form-control-static">{{ details?.email }}</p>
+                    <p class="form-control-static">{{ details?._id }}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Search request history-->
+        <div class="container">
+            <h2>List searches</h2>
+
+            <!-- <button (click)="searchReq()" type="button" class="btn btn-primary">List searches</button> -->
+            <div class="reglist">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <!-- <th>Num</th> -->
+                            <th>AWS link</th>
+
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="response">
+                        <tr *ngFor="let app of response; let i = index">
+                            <td><a href="{{response[i].url}}">{{response[i].url}}</a></td>
+
+                            <!-- <td>
+                                <button type="button" class="btn btn-info" (click)="onEdit(i)">Edit</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+                            </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

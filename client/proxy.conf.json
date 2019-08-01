@@ -9,8 +9,8 @@
         "logLevel": "debug",
         "changeOrigin": true
     },
-    "/urls": {
-        "target": "http://localhost:4020",
+    "/getawsurls": {
+        "target": "http://localhost:4025",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true

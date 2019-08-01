@@ -8,6 +8,8 @@ import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
+import { OffersacceptedComponent } from './offersaccepted/offersaccepted.component';
+import { TradesComponent } from './trades/trades.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
@@ -20,13 +22,17 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] }
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+  { path: 'trades', component: TradesComponent, canActivate: [AuthGuardService] },
+  { path: 'offersaccepted', component: OffersacceptedComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
+    TradesComponent,
+    OffersacceptedComponent,
     LoginComponent,
     RegisterComponent,
     HomeComponent
