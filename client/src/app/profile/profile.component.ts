@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthenticationService, UserDetails } from '../authentication.service';
 import { HttpClient } from '@angular/common/http';
+import { FormControl } from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import {
   MatSnackBar,
   MatSnackBarConfig,
@@ -13,6 +16,13 @@ import {
   // styleUrls: [ './profile.component.css' ],
 })
 export class ProfileComponent {
+  myControlPlain = new FormControl();
+  myControlAuto = new FormControl();
+
+  options: string[] = ['spotify', 'facebook', 'google-calendar'];
+
+  filteredOptions: Observable<string[]>;
+
   details: UserDetails;
 
   page: string = "";
@@ -60,6 +70,22 @@ export class ProfileComponent {
     this.response = response;
     console.log(this.response);
     });
+
+    //==========================///
+    this.filteredOptions = this.myControlAuto.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    console.log(value);
+
+    let ret = this.options.filter(option => option.toLowerCase().includes(filterValue));
+    console.log(ret);
+    return ret;
   }
 
   search(){

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MaterialModule } from './material.module';
@@ -16,7 +16,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 
-import {MatSnackBarModule, MatFormFieldModule, MatSelectModule, MatCheckboxModule, MatInputModule, } from '@angular/material';
+
+import {MatSnackBarModule, MatFormFieldModule, MatSelectModule, MatCheckboxModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,10 +42,11 @@ const routes: Routes = [
     BrowserModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     MatSnackBarModule,
-    MatFormFieldModule, MatSelectModule, MatCheckboxModule, MatInputModule
+    MatFormFieldModule, MatSelectModule, MatCheckboxModule, MatInputModule, MatAutocompleteModule
   ],
   providers: [
     AuthenticationService, 
