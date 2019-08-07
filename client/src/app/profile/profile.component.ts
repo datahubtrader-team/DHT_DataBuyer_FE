@@ -35,6 +35,7 @@ export class ProfileComponent {
   participant_max: string = "";
   activity: string = "";
   deadline: string = "";
+  value: string = "";
   buyerId: string = "";
 
   //Output message
@@ -133,12 +134,19 @@ export class ProfileComponent {
 
   Inputsearch(buyerId){
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    
+    var newDate = new Date(this.deadline);
+    newDate.setDate(newDate.getDate());
+    var today = newDate.toISOString().slice(0, 10);
+    console.log(today);
+
     this.http.post('/search-requests',{
       "search": this.searchInput,
       "participant_min": this.participant_min,
       "participant_max": this.participant_max,
       "activity": this.activity,
-      "deadline": this.deadline,
+      "deadline": today,
+      "value": this.value,
       "buyerId": buyerId,
       "message":"search"
     },{headers: {

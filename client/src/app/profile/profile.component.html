@@ -57,6 +57,11 @@
                             </mat-form-field>
                         </div>
                         <div class="form-group">
+                            <mat-form-field>
+                                <input matInput placeholder="price" type="text" [(ngModel)]="value">
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group">
 
                             <mat-form-field>
                                 <input matInput [matDatepicker]="picker" [(ngModel)]="deadline" placeholder="Choose a deadline">
@@ -87,6 +92,7 @@
                             <th>Participant_min</th>
                             <th>Participant_max</th>
                             <th>Activity</th>
+                            <th>Value</th>
                             <th>Deadline</th>
                             <th></th>
                             <th></th>
@@ -99,6 +105,7 @@
                             <td>{{app.participant_min}}</td>
                             <td>{{app.participant_max}}</td>
                             <td>{{app.activity}}</td>
+                            <td>{{app.value}}</td>
                             <td>{{app.deadline}}</td>
                             <td>
                                 <button type="button" class="btn btn-info" (click)="onEdit(i)">Edit</button>
