@@ -24,10 +24,13 @@ module.exports.register = function(req, res) {
 
     console.log("This is a test " + req.body.name);
 
+    console.log("This is a test " + req.body.password);
+
     user.setPassword(req.body.password);
 
+    //TODO: Publish notifications on message bus to notify buyer and send them an email
     //Send email (and mobile number, where applicable) after registration
-    sendComms.sendCommunication(req.body.email, req.body.name);
+    //sendComms.sendCommunication(req.body.email, req.body.name);
 
     user.save(function(err) {
         var token;

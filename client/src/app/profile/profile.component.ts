@@ -19,7 +19,7 @@ export class ProfileComponent {
   myControlPlain = new FormControl();
   myControlAuto = new FormControl();
 
-  options: string[] = ['spotify', 'facebook', 'google-calendar'];
+  options: string[] = ['spotify', 'facebook', 'google-calendar', 'twitter', 'hatapp', 'instagram'];
 
   filteredOptions: Observable<string[]>;
 
@@ -144,7 +144,7 @@ export class ProfileComponent {
       "search": this.searchInput,
       "participant_min": this.participant_min,
       "participant_max": this.participant_max,
-      "activity": this.activity,
+      "activity": "test",
       "deadline": today,
       "value": this.value,
       "buyerId": buyerId,

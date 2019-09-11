@@ -50,20 +50,24 @@ export class TradesComponent {
       this.details = user;
       console.log(user._id);
       console.log(this.details._id);
-      //console.log(this.details.email);
+      console.log(this.details.email);
+      this.awsurl(this.details.email);
       this.dd = user;
       this.email = this.details.email;
     }, (err) => {
       console.error(err);
     });
-    console.log(this.email);
+    
+    //console.log("********************* " +  this.dd);
 
     //=== List all aws links ===================
-    this.http.get('/getawsurls?email=11')
-    .subscribe((response) => {
-    this.response = response;
-    console.log(this.response);
-    });
+    // this.http.get('/getawsurls?email=buyer')
+    // .subscribe((response) => {
+    // this.response = response;
+    // console.log(this.response);
+    // //console.log("*********************" +  this.details._id);
+    // });
+    
   }
 
   search(){
@@ -93,15 +97,12 @@ export class TradesComponent {
     
   }
 
-  awsurl(){
-      this.http.get('/getawsurls')
-      .subscribe((response) => {
-      this.response = response;
-      this.response.forEach(function(element) {
-        response = element;
-        console.log(element);
-      });
-      //console.log(this.response);
+  awsurl(email){
+    this.http.get('/getawsurls?email=' + email)
+    .subscribe((response) => {
+    this.response = response;
+    console.log(this.response);
+    console.log("********************* " +  email);
     });
   }
 
